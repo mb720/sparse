@@ -72,7 +72,7 @@ There is another one, `before`, that you can use if you're interested in the lin
 In that way, it is similar to `until` with the difference that `before` is meant to indicate the start of a block, not the end.
 
 ### Intermediate
-If you don't know how the start and the end of a block looks (because it varie, for example) you can define __predicates__ to match the start and the end of a block. 
+If you don't know how the start and the end of a block looks (because it varies, for example) you can define __predicates__ to match the start and the end of a block. 
 
 Let's change our example file a bit, to make parsing slightly more challenging:
 
