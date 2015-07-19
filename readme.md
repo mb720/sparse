@@ -111,7 +111,7 @@ Maybe you need to consider the __line number__ as well to determine if a line sh
 val start = from((line, lineNr) => line.startsWith("start") && lineNr > 4 )
 parse(yourFile, start, to("end")
 ```
-
+This way, the line not only has to begin with the string "start" but also needs to come after the fourth line in the file.
  If it's clear in your code that the first placeholder stands for the line and the second placeholder for the line number (or if you're feeling especially succinct today), you can shorten the above example to this:
 
 ```scala
