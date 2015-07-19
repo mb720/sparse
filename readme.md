@@ -6,7 +6,7 @@ You can use Sparse to parse text blocks from files and other [sources](http://ww
 
 
 ###Basic:
-Let's say the file you'd like to parse looks like this:
+Let's say the file you'd like to parse is this:
 
     start
       first line in first block
@@ -39,7 +39,7 @@ blocksMaybe match {
 }
 ```
 We got a [`Try`](http://www.scala-lang.org/api/2.10.3/index.html#scala.util.Try) back from `parse` which contains, if the parsing was successful, the blocks from the parsed file.
-The first block we got back looks like this:
+The first block we got back is this:
 
     start
       first line in first block
@@ -61,16 +61,15 @@ Should you be interested only in what's *inside* the blocks, and not in the line
 parse(yourFile, after("start"), until("end"))
 ```
 
-The first block returned by that call looks like this:
+The first block returned by that call is a bit different compared to `to` and `from`:
 
     first line in first block
     second line in first block
 
-Up to now you've seen `from`, `to`, `after`, and `until` to mark the start and end point of your blocks.
+Up till now you've seen `from`, `to`, `after`, and `until` to mark the start and end point of your blocks.
 
 There is another one, `before`, that you can use if you're interested in the line that precedes the matching line.
 In that way, it is similar to `until` with the difference that `before` is meant to indicate the start of a block, not the end.
-
 
 ### Intermediate
 If you don't know how the start and the end of a block looks (because it varie, for example) you can define __predicates__ to match the start and the end of a block. 
@@ -105,7 +104,6 @@ If the patterns are more complicated than that, you can always resort to regular
 ```scala
 from(_.matches(yourRegexPattern))
 ```
-
 ### Expert
 Maybe you have to consider the __line number__ as well to determine if a line should be the beginning or end of a block. `Sparse` lets you account for that, too:
 
@@ -119,10 +117,15 @@ parse(yourFile, start, to("end")
 ```scala
 val start = from(_.startsWith("start") && _ > 4)
 ```
-
 ### Master
 If you're not content with the predefined block markers (i.e., `from`, `to`, `after`, `until`, `before`) you can roll your own:
+```scala
+object twoLinesAfter extends MarkerFactory {
+  override def apply(predicate: ((String, Int) => Boolean)) = BlockMarker(predicate, offset = +2)
+}
+val blocksMaybe = parse(yourFile, twoLinesAfter("start"), to("end"))
+```
 
 ## Dependencies of Sparse:
-Scala 2.10 for Try
-Scala-ARM 1.4 for reading files. http://jsuereth.com/scala-arm/
+* Scala 2.10 for [`Try`](http://www.scala-lang.org/api/2.10.3/index.html#scala.util.Try)
+* [Scala-ARM 1.4](http://jsuereth.com/scala-arm/) for reading files
