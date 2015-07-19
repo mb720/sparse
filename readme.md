@@ -81,7 +81,7 @@ Let's change our example file a bit, to make parsing slightly more challenging:
       second line in first block
     end
       unrelated stuff...
-    blockStartPrefix: firstBlockHeader
+    blockStartPrefix: secondBlockHeader
       first line in second block
       second line in second block
     end
