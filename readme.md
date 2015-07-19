@@ -105,7 +105,7 @@ If the patterns are more complicated than that, you can always resort to regular
 from(_.matches(yourRegexPattern))
 ```
 ### Expert
-Maybe you need to consider the __line number__ as well to determine if a line should be the beginning or end of a block. `Sparse` lets you account for that, too:
+Maybe you need to consider the __line number__ as well to determine if a line should be the beginning or the end of a block. `Sparse` lets you account for that, too:
 
 ```scala
 val start = from((line, lineNr) => line.startsWith("start") && lineNr > 4 )
@@ -118,7 +118,7 @@ parse(yourFile, start, to("end")
 val start = from(_.startsWith("start") && _ > 4)
 ```
 ### Master
-If you're not content with the predefined block markers (i.e., `from`, `to`, `after`, `until`, `before`) you can roll your own:
+If you're not content with the predefined block markers (i.e., `from`, `to`, `after`, `until`, and `before`) you can roll your own:
 ```scala
 object twoLinesAfter extends MarkerFactory {
   override def apply(predicate: ((String, Int) => Boolean)) =
