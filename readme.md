@@ -121,7 +121,8 @@ val start = from(_.startsWith("start") && _ > 4)
 If you're not content with the predefined block markers (i.e., `from`, `to`, `after`, `until`, `before`) you can roll your own:
 ```scala
 object twoLinesAfter extends MarkerFactory {
-  override def apply(predicate: ((String, Int) => Boolean)) = BlockMarker(predicate, offset = +2)
+  override def apply(predicate: ((String, Int) => Boolean)) =
+    BlockMarker(predicate, offset = +2)
 }
 val blocksMaybe = parse(yourFile, twoLinesAfter("start"), to("end"))
 ```
