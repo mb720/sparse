@@ -20,7 +20,7 @@ Let's say the file you'd like to parse is this:
       even more unrelated text...
 First of all, you load that file using one of the methods in [scala.io.Source](http://www.scala-lang.org/api/2.11.5/index.html#scala.io.Source$):
 ```scala
-val yourFile= fromFile(new File("parse/this/file"))
+val yourFile = fromFile(new File("parse/this/file"))
 ```
 
 In the case of our example file above, we know exactly how the start and end of a block looks like. So we can do the following to parse the two blocks from the file:

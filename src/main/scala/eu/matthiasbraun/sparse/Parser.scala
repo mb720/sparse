@@ -123,7 +123,8 @@ object Parser {
    * @param source the [[scala.io.Source]] that contains the text that we want to parse
    * @param start the text blocks we want to parse begin at this [[eu.matthiasbraun.sparse.Parser.BlockMarker]]
    * @param end the text blocks we want to parse stop at this [[eu.matthiasbraun.sparse.Parser.BlockMarker]]
-   * @return either a list of [[eu.matthiasbraun.sparse.Parser.TextBlock]]s wrapped in a [[scala.util.Success]] or a [[scala.util.Failure]] with the first exception that occurred during parsing.
+   * @return either a list of [[eu.matthiasbraun.sparse.Parser.TextBlock]]s wrapped in a [[scala.util.Success]]
+   *         or a [[scala.util.Failure]] with the first exception that occurred during parsing.
    */
   def parse(source: Source, start: BlockMarker, end: BlockMarker): Try[List[TextBlock]] = {
 
