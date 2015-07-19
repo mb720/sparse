@@ -1,6 +1,6 @@
-#Sparse: Text parsing with Scala
+#`Sparse`: Text parsing with Scala
 
-You can use Sparse to parse text blocks from files and other [sources](http://www.scala-lang.org/api/2.11.5/index.html#scala.io.Source).
+You can use `Sparse` to parse text blocks from files and other [sources](http://www.scala-lang.org/api/2.11.5/index.html#scala.io.Source).
 
 ##Usage examples:
 
@@ -86,7 +86,7 @@ Let's change our example file a bit, to make parsing slightly more challenging:
       second line in second block
     end
 
-Now, because the start of a block is different from block to block, we can't match it verbatim as we did in the previous example. But we notice that all beginnings of a block all share a common `blockStartPrefix`. Let's match that:
+Now, because the start of a block is different for each block, we can't match it verbatim as we did in the previous example. But we notice that beginnings of a block all share a common `blockStartPrefix`. Let's match that:
 
 ```scala
 parse(yourFile, from(_.startsWith("blockStartPrefix"), to("end"))
@@ -97,7 +97,7 @@ Defining predicates is of course not limited to `from`. Imagine that block ends 
     end of block 1 ###
     end of block 2 ###
 
-In this case we'd use `to(_.endsWith("###"))` in order to match the end of a block.
+In this case, we use `to(_.endsWith("###"))` in order to match the end of a block.
 
 If the patterns are more complicated than that, you can always resort to regular expressions:
 
@@ -105,7 +105,7 @@ If the patterns are more complicated than that, you can always resort to regular
 from(_.matches(yourRegexPattern))
 ```
 ### Expert
-Maybe you have to consider the __line number__ as well to determine if a line should be the beginning or end of a block. `Sparse` lets you account for that, too:
+Maybe you need to consider the __line number__ as well to determine if a line should be the beginning or end of a block. `Sparse` lets you account for that, too:
 
 ```scala
 val start = from((line, lineNr) => line.startsWith("start") && lineNr > 4 )
@@ -127,6 +127,6 @@ object twoLinesAfter extends MarkerFactory {
 val blocksMaybe = parse(yourFile, twoLinesAfter("start"), to("end"))
 ```
 
-## Dependencies of Sparse:
+## Dependencies of `Sparse`:
 * Scala 2.10 for [`Try`](http://www.scala-lang.org/api/2.10.3/index.html#scala.util.Try)
 * [Scala-ARM 1.4](http://jsuereth.com/scala-arm/) for reading files
