@@ -2,10 +2,9 @@
 
 You can use `Sparse` to parse text blocks from files and other [sources](http://www.scala-lang.org/api/2.11.5/index.html#scala.io.Source).
 
-##Usage examples:
+##Usage examples
 
-
-###Basic:
+###Basic
 Let's say the file you'd like to parse is this:
 
     start
@@ -69,7 +68,7 @@ The first block returned by that call is a bit different compared to `to` and `f
 Up till now you've seen `from`, `to`, `after`, and `until` to mark the start and end point of your blocks.
 
 There is another one, `before`, that you can use if you're interested in the line that precedes the matching line.
-In that way, it is similar to `until` with the difference that `before` is meant to indicate the start of a block, not the end.
+In that way, it is similar to `until` with the difference that `before` is meant to mark the start of a block, not the end.
 
 ### Intermediate
 If you don't know how the start and the end of a block looks (because it varies, for example) you can define __predicates__ to match the start and the end of a block. 

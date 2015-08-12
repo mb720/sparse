@@ -11,16 +11,10 @@ import eu.matthiasbraun.sparse.Parser._
 object Tester extends App {
 
   def testFunc() {
+    val file = fromURL(getClass.getResource("/testFile.txt"))
 
-    /** Gets the line numbers where the line matches the `start` or `end` of a text block inside the `lineStream` as pairs. */
-    println("sparse test started")
-    val home = System.getProperty("user.home")
-    val journalDir = s"$home/workspace/scala/Sparse"
-    val journalPath = s"$journalDir/journal_for_scala_testing.txt"
-    val file = fromFile(new File(journalPath))
-
-    val start = after((line, lineNr) => line == "###" && lineNr > 10)
-    val end = to((line, lineNr) => line == "~~~" && lineNr > 10)
+    val start = after((line, lineNr) => line == "###" && lineNr > 3)
+    val end = to((line, lineNr) => line == "~~~" && lineNr > 3)
 
     val blocksMaybe = parse(file, start, end)
 
