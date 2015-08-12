@@ -8,11 +8,12 @@ You can use `Sparse` to parse text blocks from files and other [sources](http://
 ###Basic
 Let's say the file you want to parse is this:
 
+    (unrelated text before first block)
     start
       first line in first block
       second line in first block
     end
-    (unrelated text)
+    (unrelated text before second block)
     start
       first line in second block
       second line in second block
@@ -78,12 +79,13 @@ parse(yourFile, before("start"), until("end"))
 ```
 are
 
+    (unrelated text before second block)
     start
       first line in first block
       second line in first block
 and
 
-    (unrelated text)
+    (unrelated text before second block)
     start
       first line in second block
       second line in second block
