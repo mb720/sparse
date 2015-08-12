@@ -32,10 +32,31 @@ object Parser {
    * requiring the user of this library to provide types explicitly, therefore having to write `from((_: String).startsWith("start"))` instead of `from(_.startsWith("start"))`.
    */
   trait MarkerFactory {
+    /**
+     * Creates a marker that indicates the start or end of a text block.
+     * @param line
+     *             if this string is equal to a line in the parsed text, we set a marker at the position of the line
+     * @return
+     *         a marker that is placed where the string in `line` matches the line in the parsed text
+     */
     def apply(line: String): BlockMarker = apply(line.equals _)
 
+    /**
+     * Creates a marker that indicates the start or end of a text block.
+     * @param linePredicate
+     *             if a line in the parsed text satisfies this predicate we set a marker at the position of the line
+     * @return
+     *         a marker that is placed where a line in the parsed text satisfies the `linePredicate`
+     */
     def apply(linePredicate: (String => Boolean)): BlockMarker = apply((line, lineNr) => linePredicate(line))
 
+    /**
+     * Creates a marker that indicates the start or end of a text block.
+     * @param lineAndLineNrPredicate
+     *             if a line and its number in the parsed text satisfy this predicate we set a marker at the position of the line
+     * @return
+     *         a marker that is placed where a line and its number in the parsed text satisfy the `lineAndLineNrPredicate`
+     */
     def apply(lineAndLineNrPredicate: ((String, Int) => Boolean)): BlockMarker
   }
 

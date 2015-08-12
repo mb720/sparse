@@ -127,6 +127,6 @@ object twoLinesAfter extends MarkerFactory {
 val blocksMaybe = parse(yourFile, twoLinesAfter("start"), to("end"))
 ```
 
-## Dependencies of `Sparse`:
+## Dependencies of `Sparse`
 * Scala 2.10 for [`Try`](http://www.scala-lang.org/api/2.10.3/index.html#scala.util.Try)
 * [Scala-ARM 1.4](http://jsuereth.com/scala-arm/) for reading files

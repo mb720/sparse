@@ -10,7 +10,7 @@ import eu.matthiasbraun.sparse.Parser._
  */
 object Tester extends App {
 
-  def testFunc() {
+  def testLineAndLineNrPredicate() {
     val file = fromURL(getClass.getResource("/testFile.txt"))
 
     val start = after((line, lineNr) => line == "###" && lineNr > 3)
@@ -24,5 +24,5 @@ object Tester extends App {
     }
   }
 
-  testFunc()
+  testLineAndLineNrPredicate()
 }
