@@ -91,7 +91,7 @@ and
       second line in second block
 
 ### Intermediate
-If you don't know how the start and the end of a block looks (because it varies, for example) you can define __predicates__ to match the start and the end of a block. 
+If the starts and the ends of your blocks vary you can define __predicates__ to match them.
 
 Let's change our example file a bit, to make parsing slightly more challenging:
 
@@ -99,7 +99,7 @@ Let's change our example file a bit, to make parsing slightly more challenging:
       first line in first block
       second line in first block
     end
-      unrelated stuff...
+
     blockStartPrefix: secondBlockHeader
       first line in second block
       second line in second block
