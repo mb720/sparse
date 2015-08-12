@@ -6,7 +6,8 @@ You can use `Sparse` to parse text blocks from files and other [sources](http://
 ##Usage examples
 
 ###Basic
-Let's say the file you'd like to parse is this:
+Let's say the file you want to parse is this:
+
 
     start
       first line in first block
@@ -18,6 +19,8 @@ Let's say the file you'd like to parse is this:
       second line in second block
     end
       even more unrelated text...
+
+Assuming that you're interested in the blocks that start with `start` and end with `end`, here's you parse them:
 First of all, you load that file using one of the methods in [scala.io.Source](http://www.scala-lang.org/api/2.11.5/index.html#scala.io.Source$):
 ```scala
 val yourFile = fromFile(new File("parse/this/file"))
@@ -61,7 +64,7 @@ Should you be interested only in what's *inside* the blocks, and not in the line
 parse(yourFile, after("start"), until("end"))
 ```
 
-The first block returned by that call is a bit different compared to `to` and `from`:
+The first block returned by that call is a bit different compared to the one we made using `to` and `from`:
 
     first line in first block
     second line in first block
@@ -69,7 +72,20 @@ The first block returned by that call is a bit different compared to `to` and `f
 Up till now you've seen `from`, `to`, `after`, and `until` to mark the start and end point of your blocks.
 
 There is another one, `before`, that you can use if you're interested in the line that precedes the matching line.
-In that way, it is similar to `until` with the difference that `before` is meant to mark the start of a block, not the end.
+
+The resulting blocks of
+```scala
+parse(yourFile, before("start"), until("end"))
+```
+are
+    start
+      first line in first block
+      second line in first block
+and
+      unrelated text...
+    start
+      first line in second block
+      second line in second block
 
 ### Intermediate
 If you don't know how the start and the end of a block looks (because it varies, for example) you can define __predicates__ to match the start and the end of a block. 

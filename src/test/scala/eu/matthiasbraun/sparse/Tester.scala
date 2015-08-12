@@ -13,8 +13,8 @@ object Tester extends App {
   def testLineAndLineNrPredicate() {
     val file = fromURL(getClass.getResource("/testFile.txt"))
 
-    val start = after((line, lineNr) => line == "###" && lineNr > 3)
-    val end = to((line, lineNr) => line == "~~~" && lineNr > 3)
+    val start = after((line, lineNr) => line == "###" && lineNr > 4)
+    val end = to((line, lineNr) => line == "~~~" && lineNr > 4)
 
     val blocksMaybe = parse(file, start, end)
 
@@ -23,6 +23,18 @@ object Tester extends App {
       case Failure(exception) => println(exception)
     }
   }
+  def testBefore() {
+    val file = fromURL(getClass.getResource("/testFile.txt"))
 
+
+    val blocksMaybe = parse(file, before("###"), until("~~~"))
+
+    blocksMaybe match {
+      case Success(blocks)    => blocks.foreach { println }
+      case Failure(exception) => println(exception)
+    }
+  }
+
+  testBefore()
   testLineAndLineNrPredicate()
 }
