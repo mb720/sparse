@@ -1,4 +1,4 @@
-#`Sparse`: Text parsing with Scala
+#`Sparse` Text parsing with Scala
 
 You can use `Sparse` to parse text blocks from files and other [sources](http://www.scala-lang.org/api/2.11.5/index.html#scala.io.Source).
 
