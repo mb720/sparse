@@ -8,19 +8,18 @@ You can use `Sparse` to parse text blocks from files and other [sources](http://
 ###Basic
 Let's say the file you want to parse is this:
 
-
     start
       first line in first block
       second line in first block
     end
-      unrelated text...
+    (unrelated text)
     start
       first line in second block
       second line in second block
     end
-      even more unrelated text...
+    (more unrelated text)
 
-Assuming that you're interested in the blocks that start with `start` and end with `end`, here's you parse them:
+Assuming that you're interested in the blocks that start with `start` and end with `end`, here's how you parse them:
 First of all, you load that file using one of the methods in [scala.io.Source](http://www.scala-lang.org/api/2.11.5/index.html#scala.io.Source$):
 ```scala
 val yourFile = fromFile(new File("parse/this/file"))
@@ -78,11 +77,13 @@ The resulting blocks of
 parse(yourFile, before("start"), until("end"))
 ```
 are
+
     start
       first line in first block
       second line in first block
 and
-      unrelated text...
+
+    (unrelated text)
     start
       first line in second block
       second line in second block
