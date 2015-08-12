@@ -139,12 +139,18 @@ val start = from(_.startsWith("start") && _ > 4)
 ### Master
 If you're not content with the predefined block markers (i.e., `from`, `to`, `after`, `until`, and `before`) you can roll your own:
 ```scala
+/** The block begins two lines after the `predicate` matches. */
 object twoLinesAfter extends MarkerFactory {
   override def apply(predicate: ((String, Int) => Boolean)) =
     BlockMarker(predicate, offset = +2)
 }
+```
+Your custom marker is used like all the predefined ones shown above:
+```scala
 val blocksMaybe = parse(yourFile, twoLinesAfter("start"), to("end"))
 ```
+
+If you're wondering why you could pass a simple string instead of the `((String, Int) => Boolean)` predicate to `twoLinesAfter`, have a look at the `MarkerFactory` in [`Parser.scala`](https://github.com/mb720/sparse/blob/master/src/main/scala/eu/matthiasbraun/sparse/Parser.scala)
 
 ## Dependencies of `Sparse`
 * Scala 2.10 for [`Try`](http://www.scala-lang.org/api/2.10.3/index.html#scala.util.Try)
