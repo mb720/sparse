@@ -1,7 +1,8 @@
-#`Sparse` Text parsing with Scala
+#Sparse: text parsing for Scala
 
 You can use `Sparse` to parse text blocks from files and other [sources](http://www.scala-lang.org/api/2.11.5/index.html#scala.io.Source).
 
+[![Build Status](https://travis-ci.org/mb720/sparse.svg?branch=master)](https://travis-ci.org/mb720/sparse)
 ##Usage examples
 
 ###Basic
