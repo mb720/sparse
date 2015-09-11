@@ -10,14 +10,14 @@ Let's say the file you want to parse is this:
 
     (unrelated text before first block)
     start
-      first line in first block        
-      second line in first block      
+      first line in first block
+      second line in first block
     end
 
     (unrelated text before second block)
     start
-      first line in second block         
-      second line in second block       
+      first line in second block
+      second line in second block
     end
 
     (more unrelated text)

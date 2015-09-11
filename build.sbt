@@ -6,3 +6,5 @@ scalaVersion := "2.11.6"
 
 libraryDependencies += "com.jsuereth" %% "scala-arm" % "1.4"
 
+publishMavenStyle := true
+
