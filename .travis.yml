@@ -1,3 +1,10 @@
 language: scala
 scala:
-    - 2.11.6
+- 2.11.6
+env:
+  global:
+  - SONATYPE_USERNAME=mb720
+  - secure: K+dYvxgAqnnqV/Du7dcMGWn5q364uuxZAltacaOsGm0UuIgSMPC5Y1+TDnxUJZ61ExD+5ub70bueVitENr1llg7kihQCqwercgb4C/N+U/r7QaLRKSPWPxd4xiksfpKHfn9Ns+OnzpbTA9Xnt5/T+fgzxS+ESplWaMej0bX8RicmMguEuuw8CyqfrYghgSsZCpR4aLzcevncu+IfbLuVOeFKp27pq7qti0N1vNi6wAnljmeOa4PQDEWTgD+9vjkdkFssKxOeX3Wc8MraimXOy1TXVxepd7pZr/ywXzHwT0G10M3fQ2JVhzkYeMH5AdLFS5bZnAOfWxh/LOnsyzZOcDcp5ivbGK4yuidgm8H9asPuWwsDgL9gf727WNtNMe7uCULraI+Jc2Qul0X13zIwtmIGUoQ7YogOlJsQrrX7jZNu8aQCl7Ct4ho772+Mm5RuiP5yqorBqr3KJuNLHRCjyl6QbQkhVOOC1efxa9t20Cu5FSYxtGQ4EI0WKXT8oyEEF88z4t16lDAgNNkK7/ji5InI+EikWvtDnLWj2b0s0BzsgpMcHjmcZKJz1DWBeP90dMRXfSmIqw/TI/o9Wu+N1m3RFedoQt9rjxhfCc5NnP4Un4+hlw7l+oLz5dE+P7orygasN46+J0m1noI8tLIatrVTplRF4kFYyzA0ut8Fbgc=
+after_success:
+- python project/writeM2file.py
+- mvn clean deploy --settings ~/.m2/mySettings.xml

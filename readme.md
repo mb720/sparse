@@ -10,14 +10,16 @@ Let's say the file you want to parse is this:
 
     (unrelated text before first block)
     start
-      first line in first block
-      second line in first block
+      first line in first block        
+      second line in first block      
     end
+
     (unrelated text before second block)
     start
-      first line in second block
-      second line in second block
+      first line in second block         
+      second line in second block       
     end
+
     (more unrelated text)
 
 Assuming that you're interested in the blocks that start with `start` and end with `end`, here's how you parse them:
@@ -127,7 +129,7 @@ from(_.matches(yourRegexPattern))
 Maybe you need to consider the __line number__ as well to determine if a line should be the beginning or the end of a block. `Sparse` lets you account for that, too:
 
 ```scala
-val start = from((line, lineNr) => line.startsWith("start") && lineNr > 4 )
+val start = from((line, lineNr) => line.startsWith("start") && lineNr > 4)
 parse(yourFile, start, to("end")
 ```
 This way, the line not only has to begin with the string "start" but also needs to come after the fourth line in the file.
