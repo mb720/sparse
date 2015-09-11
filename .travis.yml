@@ -9,5 +9,5 @@ after_success:
 - sbt make-pom
 - python project/writeM2file.py
 - python project/copyPomToProjectRoot.py
-- mvn clean deploy --settings ~/.m2/mySettings.xml --file *.xml
+- mvn clean deploy --settings ~/.m2/mySettings.xml --file *.pom
 
