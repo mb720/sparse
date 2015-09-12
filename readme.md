@@ -3,6 +3,8 @@ You can use `Sparse` to parse text blocks from files and other [sources](http://
 
 [![Build Status](https://travis-ci.org/mb720/sparse.svg?branch=master)](https://travis-ci.org/mb720/sparse)
 
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/eu.matthiasbraun/sparse/badge.svg)](https://maven-badges.herokuapp.com/maven-central/eu.matthiasbraun/sparse)
+
 ##Get Sparse
 First, add `Sparse` as an dependency in your project's `build.sbt`:
 
