@@ -3,11 +3,16 @@ scala:
 - 2.11.6
 env:
   global:
-  - SONATYPE_USERNAME=mb720
-  - secure: K+dYvxgAqnnqV/Du7dcMGWn5q364uuxZAltacaOsGm0UuIgSMPC5Y1+TDnxUJZ61ExD+5ub70bueVitENr1llg7kihQCqwercgb4C/N+U/r7QaLRKSPWPxd4xiksfpKHfn9Ns+OnzpbTA9Xnt5/T+fgzxS+ESplWaMej0bX8RicmMguEuuw8CyqfrYghgSsZCpR4aLzcevncu+IfbLuVOeFKp27pq7qti0N1vNi6wAnljmeOa4PQDEWTgD+9vjkdkFssKxOeX3Wc8MraimXOy1TXVxepd7pZr/ywXzHwT0G10M3fQ2JVhzkYeMH5AdLFS5bZnAOfWxh/LOnsyzZOcDcp5ivbGK4yuidgm8H9asPuWwsDgL9gf727WNtNMe7uCULraI+Jc2Qul0X13zIwtmIGUoQ7YogOlJsQrrX7jZNu8aQCl7Ct4ho772+Mm5RuiP5yqorBqr3KJuNLHRCjyl6QbQkhVOOC1efxa9t20Cu5FSYxtGQ4EI0WKXT8oyEEF88z4t16lDAgNNkK7/ji5InI+EikWvtDnLWj2b0s0BzsgpMcHjmcZKJz1DWBeP90dMRXfSmIqw/TI/o9Wu+N1m3RFedoQt9rjxhfCc5NnP4Un4+hlw7l+oLz5dE+P7orygasN46+J0m1noI8tLIatrVTplRF4kFYyzA0ut8Fbgc=
+    # Used to decrypt the GPG keys and the credentials files. They are used for signing this project's artifacts and publishing them to Maven Central via Sonatype
+  - secure: k1SZQy/GPJyxsfPoJuNcQ+eAvX8t3/rdnL35ghNf4ME1IjVAEYvI6R0zFpU9UITlIZOXa9lz7QeRpHVBomN0zv4A0ShjmHgB1vX+YJFA3Jr+phUNLQZscKwieJrcJyM9i3UpKlMiPWFGiaGQyChl1LY76i3yN720fwVS6vQHIUHgNoYScFXf2lLDzf49lz1qMCiQ3czifPiNmMVsrQZ5kAu7HrKcQw+KL7WvHWJn7+ObEADof4EqNf9LMf2S+kWtPrFJkxKJFyuKYIwtFFVnckDGgfjIbzEgBIWNVMPhspeCfYj6q8fXbBpfP+h26WdsvVFzORh+Szjs5ogI6YjWCX6BohUQaPDmW0cakzOxtPHK4VYrC/r/fW8xSXL2yPuvQOXE3S7fNZs3IVQcsH2LB1YHiG4MD47z6ueij6Sm5gG4nGpOrkTPyguEUvy2PiIBy84qXA61tY2GwPhFoTtpn+St5DbQP43CqMxnCVRWP+Mq999Jg2yfUxCgTD4A4BpgTUwnond1ofGFvWjFWMes33Z9H1XjMY+igjgIg4BR99/d39DEs9w17hZui4nGqF1Rvldj6x2shV2fYWgKIoI0k1xg1OpwHslIc3FtwaFf5N1wYYLA0dyp2z/Zh193gpR0KBafQrtuqyO6vY2xFMuNGn3nevicjOXeI+X2flh6X4s=
+
+before_install:
+  # Decrypt the secrets
+- openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -in secring.asc.enc -out local.secring.asc -d
+- openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -in pubring.asc.enc -out local.pubring.asc -d
+- openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -in credentials.sbt.enc -out local.credentials.sbt -d
+
 after_success:
-- sbt make-pom
-- python project/writeM2file.py
-- python project/copyPomToProjectRoot.py
-- mvn clean deploy --settings ~/.m2/mySettings.xml --file *.pom
+- sbt publishSigned
+- sbt sonatypeRelease
 

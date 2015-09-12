@@ -1,8 +1,20 @@
 #Sparse: text parsing for Scala
-
-You can use `Sparse` to parse text blocks from files and other [sources](http://www.scala-lang.org/api/2.11.5/index.html#scala.io.Source).
+You can use `Sparse` to parse text blocks from files and other [sources](http://www.scala-lang.org/api/current/index.html#scala.io.Source).
 
 [![Build Status](https://travis-ci.org/mb720/sparse.svg?branch=master)](https://travis-ci.org/mb720/sparse)
+
+##Get Sparse
+First, add `Sparse` as an dependency in your project's `build.sbt`:
+
+```scala
+libraryDependencies += "eu.matthiasbraun" %% "sparse" % "1.0"
+```
+
+Then you can import its methods and objects:
+```scala
+import eu.matthiasbraun.sparse.Parser._
+```
+
 ##Usage examples
 
 ###Basic
@@ -23,7 +35,7 @@ Let's say the file you want to parse is this:
     (more unrelated text)
 
 Assuming that you're interested in the blocks that start with `start` and end with `end`, here's how you parse them:
-First of all, you load that file using one of the methods in [scala.io.Source](http://www.scala-lang.org/api/2.11.5/index.html#scala.io.Source$):
+First of all, you load that file using one of the methods in [scala.io.Source](http://www.scala-lang.org/api/current/index.html#scala.io.Source$):
 ```scala
 val yourFile = fromFile(new File("parse/this/file"))
 ```
@@ -43,7 +55,7 @@ blocksMaybe match {
   case Failure(exception) => println(exception)
 }
 ```
-We got a [`Try`](http://www.scala-lang.org/api/2.10.3/index.html#scala.util.Try) back from `parse` which contains, if the parsing was successful, the blocks from the parsed file.
+We got a [`Try`](http://www.scala-lang.org/api/current/index.html#scala.util.Try) back from `parse` which contains, if the parsing was successful, the blocks from the parsed file.
 The first block we got back is this:
 
     start
@@ -155,5 +167,5 @@ val blocksMaybe = parse(yourFile, twoLinesAfter("start"), to("end"))
 If you're wondering why you could pass a simple string instead of the `((String, Int) => Boolean)` predicate to `twoLinesAfter`, have a look at the `MarkerFactory` in [`Parser.scala`](https://github.com/mb720/sparse/blob/master/src/main/scala/eu/matthiasbraun/sparse/Parser.scala)
 
 ## Dependencies of `Sparse`
-* Scala 2.10 for [`Try`](http://www.scala-lang.org/api/2.10.3/index.html#scala.util.Try)
+* Scala 2.10 for [`Try`](http://www.scala-lang.org/api/current/index.html#scala.util.Try)
 * [Scala-ARM 1.4](http://jsuereth.com/scala-arm/) for reading files
