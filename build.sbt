@@ -1,8 +1,12 @@
 name := "Sparse"
 // This defines where we publish this project's artifacts (via "sbt publishSigned")
 organization := "eu.matthiasbraun"
+name:= "sparse"
 version := "1.0"
 scalaVersion := "2.11.6"
+
+// Disable using the Scala version in output paths and artifacts as a postfix
+crossPaths := false
 
 libraryDependencies += "com.jsuereth" %% "scala-arm" % "1.4"
 
@@ -21,7 +25,6 @@ publishTo := {
   else
     Some("releases" at nexus + "service/local/staging/deploy/maven2")
 }
-
 
 pomExtra := (
 <scm>
