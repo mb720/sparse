@@ -149,7 +149,7 @@ Maybe you need to consider the __line number__ as well to determine if a line sh
 
 ```scala
 val start = from((line, lineNr) => line.startsWith("start") && lineNr > 4)
-parse(yourFile, start, to("end")
+parse(yourFile, start, to("end"))
 ```
 This way, the line not only has to begin with the string "start" but also needs to come after the fourth line in the file.
  If it's clear in your code that the first placeholder stands for the line and the second placeholder for the line number (or if you're feeling especially succinct today), you can shorten the above example to this:
@@ -160,7 +160,7 @@ val start = from(_.startsWith("start") && _ > 4)
 
 ### Master
 
-If you're not content with the predefined block markers (i.e., `from`, `to`, `after`, `until`, and `before`) you can roll your own:
+If you're not content with the predefined block markers (i.e., `from`, `to`, `after`, `until`, and `before`), you can roll your own:
 ```scala
 /** The block begins two lines after the `predicate` matches. */
 object twoLinesAfter extends MarkerFactory {
