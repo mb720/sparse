@@ -1,11 +1,13 @@
-#Sparse: text parsing for Scala
+# Sparse: text parsing for Scala
+
 You can use `Sparse` to parse text blocks from files and other [sources](http://www.scala-lang.org/api/current/index.html#scala.io.Source).
 
 [![Build Status](https://travis-ci.org/mb720/sparse.svg?branch=master)](https://travis-ci.org/mb720/sparse)
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/eu.matthiasbraun/sparse/badge.svg)](https://maven-badges.herokuapp.com/maven-central/eu.matthiasbraun/sparse)
 
-##Get Sparse
+## Get Sparse
+
 First, add `Sparse` as an dependency in your project's `build.sbt`:
 
 ```scala
@@ -17,9 +19,10 @@ Then you can import its methods and objects:
 import eu.matthiasbraun.sparse.Parser._
 ```
 
-##Usage examples
+## Usage examples
 
-###Basic
+### Basic
+
 Let's say the file you want to parse is this:
 
     (unrelated text before first block)
@@ -107,6 +110,7 @@ and
       second line in second block
 
 ### Intermediate
+
 If the starts and the ends of your blocks vary you can define __predicates__ to match them.
 
 Let's change our example file a bit, to make parsing slightly more challenging:
@@ -140,6 +144,7 @@ If the patterns are more complicated than that, you can always resort to regular
 from(_.matches(yourRegexPattern))
 ```
 ### Expert
+
 Maybe you need to consider the __line number__ as well to determine if a line should be the beginning or the end of a block. `Sparse` lets you account for that, too:
 
 ```scala
@@ -152,7 +157,9 @@ This way, the line not only has to begin with the string "start" but also needs 
 ```scala
 val start = from(_.startsWith("start") && _ > 4)
 ```
+
 ### Master
+
 If you're not content with the predefined block markers (i.e., `from`, `to`, `after`, `until`, and `before`) you can roll your own:
 ```scala
 /** The block begins two lines after the `predicate` matches. */
@@ -169,5 +176,6 @@ val blocksMaybe = parse(yourFile, twoLinesAfter("start"), to("end"))
 If you're wondering why you could pass a simple string instead of the `((String, Int) => Boolean)` predicate to `twoLinesAfter`, have a look at the `MarkerFactory` in [`Parser.scala`](https://github.com/mb720/sparse/blob/master/src/main/scala/eu/matthiasbraun/sparse/Parser.scala)
 
 ## Dependencies of `Sparse`
+
 * Scala 2.10 for [`Try`](http://www.scala-lang.org/api/current/index.html#scala.util.Try)
 * [Scala-ARM 1.4](http://jsuereth.com/scala-arm/) for reading files
